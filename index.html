@@ -1,0 +1,1527 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="color-scheme" content="light">
+<title>十大管理过程 · 默写练习（手机版）</title>
+<style>
+:root{
+  --bg:#f4f5f7; --card:#fff; --line:#e6e8ec; --text:#191c22; --muted:#6b7280;
+  --accent:#2f6bff; --accent-soft:#eaf0ff;
+  --ok:#12864a; --ok-soft:#e9f7ef;
+  --bad:#d92d20; --bad-soft:#fdecea;
+  --warn:#b45309; --warn-soft:#fdf3e3;
+  --r:12px; --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 16px rgba(16,24,40,.04);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font:15px/1.65 system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+button,input,textarea,select{font-family:inherit}
+:focus-visible{outline:2px solid rgba(47,107,255,.45);outline-offset:1px}
+
+/* 顶部 */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-inner{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:36px;height:36px;flex:0 0 auto;border-radius:11px;background:linear-gradient(140deg,#2f6bff,#7aa2ff);color:#fff;font-weight:700;display:grid;place-items:center;font-size:16px}
+h1{font-size:16px;margin:0;letter-spacing:.2px}
+.brand p{margin:0;font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:4px;background:#eef0f4;padding:4px;border-radius:10px;margin-left:auto;flex-wrap:wrap}
+.tabs button{border:0;background:transparent;padding:7px 14px;border-radius:8px;font:inherit;font-size:13.5px;color:#4b5563;cursor:pointer;transition:.15s}
+.tabs button:hover{color:var(--text)}
+.tabs button.active{background:#fff;color:var(--text);box-shadow:0 1px 2px rgba(16,24,40,.08);font-weight:600}
+
+/* 布局 */
+main{max-width:1180px;margin:0 auto;padding:22px 20px 40px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);margin-bottom:18px}
+.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.grow{flex:1}
+.muted{color:var(--muted);font-size:12.5px}
+.tip{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+
+/* 按钮 */
+.btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--text);padding:8px 14px;border-radius:9px;font:inherit;font-size:13.5px;cursor:pointer;transition:.15s;white-space:nowrap}
+.btn:hover{background:#f6f7f9;border-color:#d5d8de}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#245cf0;border-color:#245cf0}
+.btn.tiny{padding:4px 9px;font-size:12.5px;border-radius:7px}
+.btn.danger{color:var(--bad)}
+.btn.danger:hover{background:var(--bad-soft);border-color:#f4c7c3}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#4b5563;cursor:pointer;user-select:none}
+.chk input{accent-color:var(--accent);width:15px;height:15px}
+
+/* 计分条 */
+.scorebar{display:flex;align-items:baseline;gap:12px;padding:10px 13px;border-radius:10px;background:#f7f8fa;border:1px dashed var(--line);margin-bottom:16px;font-size:13px;flex-wrap:wrap}
+.scorebar .big{font-size:21px;font-weight:700;color:var(--accent);line-height:1}
+.scorebar .slash{color:var(--muted);font-weight:500;font-size:14px}
+
+/* 领域 + 矩阵 */
+.area{margin-bottom:18px}
+.area-head{display:flex;align-items:baseline;gap:10px;margin:0 0 8px;flex-wrap:wrap}
+.area-head h2{font-size:15.5px;margin:0}
+.gridwrap{overflow-x:auto;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(168px,1fr));gap:8px;min-width:900px}
+.cell{border:1px solid var(--line);border-radius:10px;padding:7px;background:#fcfcfd;display:flex;flex-direction:column;min-height:106px;transition:.15s}
+.cell-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);margin-bottom:5px;padding:0 2px 0 6px;border-left:3px solid #cbd5e1}
+.cell[data-group="启动"] .cell-head{border-left-color:#38bdf8}
+.cell[data-group="规划"] .cell-head{border-left-color:#818cf8}
+.cell[data-group="执行"] .cell-head{border-left-color:#34d399}
+.cell[data-group="监控"] .cell-head{border-left-color:#fbbf24}
+.cell[data-group="收尾"] .cell-head{border-left-color:#94a3b8}
+.cell textarea{width:100%;border:0;background:transparent;resize:vertical;min-height:66px;font:inherit;font-size:13px;line-height:1.55;outline:none;padding:2px 4px;color:var(--text)}
+.cell textarea::placeholder{color:#b9bec7;font-size:12.5px}
+.cell.empty{background:#fafbfc;border-style:dashed}
+.cell.empty .none{font-size:12px;color:#c2c7cf;text-align:center;padding:26px 0}
+.cell.pass{border-color:#a7e0c0;background:#f7fdf9}
+.cell.fail{border-color:#f3c9c5;background:#fffafa}
+.badge{background:var(--accent-soft);color:#2452c9;border-radius:6px;padding:1px 6px;font-size:11px;font-weight:600;line-height:1.5}
+
+/* 判定结果 */
+.res{margin-top:6px;display:flex;flex-direction:column;gap:2px}
+.r{display:flex;gap:5px;align-items:baseline;border-radius:6px;padding:2px 6px;font-size:12.5px;line-height:1.5;word-break:break-all}
+.r .ic{font-weight:700;font-size:11px;flex:0 0 auto}
+.r.ok{color:var(--ok);background:var(--ok-soft)}
+.r.near{color:var(--warn);background:var(--warn-soft)}
+.r.bad{color:var(--bad);background:var(--bad-soft)}
+.r.miss{color:#6b7280;background:#f3f4f6}
+.r em{font-style:normal;opacity:.85;font-size:12px}
+.resbox{margin-top:14px;display:flex;flex-direction:column;gap:3px}
+.resbox .r{padding:4px 8px;font-size:13px}
+.r .num{color:var(--muted);font-size:11.5px;min-width:18px}
+
+/* 逐领域默写 */
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 13px;font:inherit;font-size:12.5px;cursor:pointer;color:#4b5563;transition:.15s}
+.chip:hover{border-color:#c7cbd3}
+.chip.on{background:var(--text);color:#fff;border-color:var(--text)}
+.big-input{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 13px;font:inherit;font-size:14.5px;line-height:1.95;outline:none;resize:vertical;transition:.15s;color:var(--text)}
+.big-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(47,107,255,.12)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:12px}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}
+
+/* 总表 */
+.tblwrap{overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+table.mt{border-collapse:separate;border-spacing:0;width:100%;min-width:900px;font-size:13px}
+.mt th,.mt td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);vertical-align:top;padding:7px 8px;text-align:left}
+.mt thead th{position:sticky;top:0;z-index:2;background:#f7f8fa;font-size:12.5px;color:#4b5563;font-weight:600;white-space:nowrap}
+.mt thead th.corner{left:0;z-index:3;min-width:96px}
+.mt tbody th{background:#fbfbfc;font-size:12.5px;font-weight:600;white-space:nowrap;position:sticky;left:0;z-index:1}
+.mt tr:last-child td,.mt tr:last-child th{border-bottom:0}
+.mt th:last-child,.mt td:last-child{border-right:0}
+.mt td{min-width:152px;background:#fcfcfd}
+.mt td.pass{background:#f7fdf9}
+.mt td.emptycell{background:#fafbfc}
+.mt .none{color:#c2c7cf;text-align:center;display:block;padding:4px 0}
+.slot{display:block;width:100%;border:0;border-bottom:1px dashed #dfe3e8;background:transparent;padding:3px 2px;margin-bottom:2px;font:inherit;font-size:12.5px;line-height:1.6;color:var(--text);outline:none;transition:.12s}
+.slot::placeholder{color:#c9ced6;font-size:11px}
+.slot:focus{border-bottom-color:var(--accent);background:#f5f9ff}
+.slot.ok{border-bottom-color:#a7e0c0;background:#f2f9f5;color:var(--ok)}
+.slot.near{border-bottom-color:#f0cf9a;background:#fffaf0;color:var(--warn)}
+.slot.bad{border-bottom-color:#f0b6b1;background:#fff7f6;color:var(--bad);text-decoration:line-through}
+.missline{color:var(--bad);font-size:11.5px;line-height:1.5;margin-top:3px}
+
+/* 管理 */
+.panel-head h2{font-size:15.5px;margin:0 0 2px}
+.panel-head p{margin:0 0 14px}
+.edit-area{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;background:#fff}
+.edit-area-head{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.inp{border:1px solid var(--line);border-radius:8px;padding:6px 9px;font:inherit;font-size:13px;background:#fff;outline:none;min-width:0;color:var(--text)}
+.inp:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(47,107,255,.1)}
+.area-name{font-weight:600;flex:1;max-width:320px}
+.edit-row{display:flex;gap:6px;margin-bottom:6px;align-items:center}
+.edit-row .sel{width:86px;flex:0 0 auto}
+.edit-row .pname{flex:1}
+.row-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.hint-box{border:1px dashed var(--line);border-radius:10px;padding:12px 14px;background:#fafbfc;font-size:13px;color:#4b5563;line-height:1.8}
+.filebar{margin-top:12px;padding:10px 12px;border:1px dashed var(--line);border-radius:9px;background:#fafbfc;font-size:12.5px;color:#4b5563;line-height:1.7}
+.filebar b{color:var(--text)}
+.warn-t{color:var(--warn)}
+
+/* 提示 */
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);background:#191c22;color:#fff;padding:9px 18px;border-radius:10px;font-size:13.5px;opacity:0;pointer-events:none;transition:.22s;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.empty-state{text-align:center;color:var(--muted);padding:40px 16px}
+
+footer{max-width:1180px;margin:0 auto;padding:0 20px 40px;color:#9aa1ab;font-size:12px;line-height:1.8}
+
+@media (max-width:640px){
+  .top-inner{padding:10px 14px;gap:10px}
+  .tabs{margin-left:0;width:100%}
+  .tabs button{flex:1;padding:7px 6px;font-size:13px}
+  main{padding:16px 12px 30px}
+  .panel{padding:13px}
+  .area-name{max-width:none}
+}
+
+/* ================= 手机版适配 ================= */
+html,body{height:auto;font-size:16px;-webkit-text-size-adjust:100%}
+body{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+
+/* 顶部标题，不再吸顶，省出纵向空间 */
+.top{position:static;background:#fff}
+.top-inner{display:block;max-width:none;padding:12px 14px 8px}
+.logo{width:34px;height:34px;font-size:15px;border-radius:10px}
+h1{font-size:17px}
+.brand p{font-size:12px}
+
+main{max-width:none;padding:12px 12px 18px}
+footer{max-width:none;padding:0 14px 20px;font-size:11.5px}
+
+/* 选项卡收到底部，拇指可及 */
+.tabs{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  margin:0;padding:6px 6px calc(6px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);border-radius:0;
+  gap:4px;flex-wrap:nowrap;
+}
+.tabs button{flex:1;padding:10px 2px;font-size:12.5px;border-radius:10px;color:#5b6472}
+.tabs button.active{background:var(--accent-soft);color:#2452c9;box-shadow:none;font-weight:600}
+
+/* 控件放大，且不低于 16px 以避免 iOS 自动放大 */
+.panel{padding:12px;border-radius:14px;margin-bottom:12px}
+.panel-head h2{font-size:16.5px}
+.toolbar{gap:8px;margin-bottom:10px}
+.toolbar .btn{flex:1 1 auto}
+.btn{padding:11px 14px;font-size:14.5px;border-radius:11px}
+.btn.tiny{padding:7px 11px;font-size:12.5px}
+.big-input{font-size:16px;padding:12px;line-height:1.85}
+.inp{font-size:16px;padding:9px 10px;min-height:40px}
+.chk{font-size:14px}
+.chk input{width:18px;height:18px}
+.scorebar{font-size:13px;padding:11px 13px}
+.scorebar .big{font-size:24px}
+.legend{font-size:11.5px;gap:10px}
+
+/* 领域：五列网格改成竖排单列 */
+.area{margin-bottom:14px}
+.area-head h2{font-size:16.5px}
+.chip{padding:8px 15px;font-size:13.5px}
+.gridwrap{overflow:visible;padding-bottom:0}
+.grid{display:flex;flex-direction:column;gap:8px;min-width:0}
+.cell{min-height:auto;padding:9px 10px;border-radius:12px}
+.cell-head{font-size:12.5px;margin-bottom:6px}
+.cell textarea{font-size:16px;min-height:92px;line-height:1.75}
+.cell textarea::placeholder{font-size:13px}
+.r{font-size:13px;padding:3px 7px}
+.r em{font-size:12.5px}
+
+/* 总表：表格拆成一张张卡片 */
+.tblwrap{overflow:visible;border:0;background:transparent;border-radius:0}
+table.mt{display:block;min-width:0;width:100%;font-size:16px}
+.mt thead{display:none}
+.mt tbody{display:block}
+.mt tbody tr{
+  display:block;background:#fff;border:1px solid var(--line);border-radius:14px;
+  overflow:hidden;margin-bottom:12px;box-shadow:var(--shadow);
+}
+.mt tbody th{
+  display:block;position:static;width:auto;white-space:normal;
+  background:#f7f8fa;border:0;border-bottom:1px solid var(--line);
+  padding:11px 14px;font-size:16px;
+}
+.mt td{
+  display:block;position:static;min-width:0;border:0;border-top:1px solid #eef0f3;
+  padding:10px 14px;background:#fff;
+}
+.mt td:first-of-type{border-top:0}
+.mt td::before{
+  content:attr(data-group);display:block;font-size:12px;font-weight:600;
+  color:var(--muted);margin-bottom:7px;
+}
+.mt td.emptycell{display:none}
+.mt td.pass{background:#f7fdf9}
+.slot{font-size:16px;padding:7px 2px;margin-bottom:3px;line-height:1.7}
+.slot::placeholder{font-size:12.5px}
+.missline{font-size:12.5px}
+
+/* 题库管理 */
+.edit-area{padding:12px;border-radius:12px}
+.edit-area-head{gap:8px}
+.area-name{max-width:none;font-size:16px}
+.edit-row{flex-wrap:wrap;gap:8px}
+.edit-row .sel{width:104px;font-size:15px;padding:9px 8px}
+.edit-row .pname{font-size:16px;padding:9px 10px}
+.row-actions{gap:8px}
+.hint-box{font-size:13px;padding:12px}
+.filebar{font-size:12.5px}
+
+/* 提示条浮在底部选项卡之上 */
+#toast{bottom:calc(92px + env(safe-area-inset-bottom));font-size:14px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="logo">十</span>
+      <div>
+        <h1>十大管理过程 · 默写练习</h1>
+        <p id="subtitle">信息系统项目管理师 · 写下答案即时判对错</p>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="matrix" class="active">全领域填表</button>
+      <button data-tab="table">总表默写</button>
+      <button data-tab="area">逐领域默写</button>
+      <button data-tab="manage">题库管理</button>
+    </nav>
+  </div>
+</header>
+
+<main id="view"></main>
+
+<footer>
+  数据默认存在本机浏览器里（localStorage），不联网。要在多台电脑之间使用：到「题库管理 → 数据」用「保存到文件 / 从文件读取」，把数据文件放在 U 盘里即可。
+</footer>
+
+<noscript><div style="padding:24px;text-align:center;color:#d92d20">需要启用 JavaScript 才能使用本工具。</div></noscript>
+
+<script>
+(function(){
+'use strict';
+
+/* ================= 常量 ================= */
+var GROUPS = ['启动','规划','执行','监控','收尾'];
+var GO = {}; GROUPS.forEach(function(g,i){ GO[g]=i; });
+var LS_KEY = 'pm10.data.v1';
+var LS_DRAFT = 'pm10.draft.v1';
+var LS_DRAFT2 = 'pm10.draft2.v1';
+
+/* ================= 工具函数 ================= */
+function uid(){ return 'x' + Math.random().toString(36).slice(2,9); }
+function $(s, r){ return (r||document).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+
+function esc(s){
+  return String(s==null ? '' : s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
+/* 归一化：去空白/标点、全角转半角、统一常见同义词 */
+function norm(s){
+  var t = String(s==null ? '' : s).trim();
+  if(!t) return '';
+  t = t.replace(/[\s\u3000]/g, '');
+  t = t.replace(/[。．.，,、；;：:！!？?“”"'‘’（）()《》〈〉<>【】\[\]—\-－·~`]/g, '');
+  t = t.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(c){ return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); });
+  t = t.replace(/制订/g, '制定')
+       .replace(/相关方/g, '干系人')
+       .replace(/干係人/g, '干系人')
+       .replace(/子过程|过程/g, '');
+  return t.toLowerCase();
+}
+
+/* 编辑距离相似度 */
+function sim(a, b){
+  if(!a.length || !b.length) return 0;
+  var m = a.length, n = b.length, i, j;
+  var prev = [], cur;
+  for(j=0; j<=n; j++) prev[j] = j;
+  for(i=1; i<=m; i++){
+    cur = [i];
+    for(j=1; j<=n; j++){
+      cur[j] = Math.min(prev[j]+1, cur[j-1]+1, prev[j-1] + (a[i-1]===b[j-1] ? 0 : 1));
+    }
+    prev = cur;
+  }
+  return 1 - prev[n] / Math.max(m, n);
+}
+
+/* 判定：exact 完全正确 / near 接近 / wrong / empty */
+function judge(user, expected){
+  var a = norm(user), b = norm(expected);
+  if(!a) return 'empty';
+  if(a === b) return 'exact';
+  var a2 = a.replace(/项目/g, ''), b2 = b.replace(/项目/g, '');
+  if(a2 && a2 === b2) return 'exact';
+  if(a2 && b2 && sim(a2, b2) >= 0.8) return 'near';
+  return 'wrong';
+}
+
+/* 把多行文本拆成条目，容忍换行、顿号、逗号，并去掉行首序号 */
+function splitEntries(text){
+  return String(text||'')
+    .split(/[\n\r;；、，,]+/)
+    .map(function(s){ return s.trim().replace(/^[0-9０-９]+[.、)）．]?\s*/, ''); })
+    .filter(Boolean);
+}
+
+/* 按行拆（严格顺序模式用，保留中间空行以对齐位置） */
+function splitLines(text, keepEmpty){
+  var arr = String(text||'').split(/\r?\n/).map(function(s){
+    return s.trim().replace(/^[0-9０-９]+[.、)）．]?\s*/, '');
+  });
+  if(!keepEmpty) return arr.filter(Boolean);
+  while(arr.length && !arr[arr.length - 1]) arr.pop();
+  return arr;
+}
+
+function ordered(area){
+  return area.items.slice().sort(function(x,y){
+    var a = GO[x.group], b = GO[y.group];
+    if(a == null) a = 99;
+    if(b == null) b = 99;
+    return a - b;
+  });
+}
+function itemsOf(area, g){
+  return area.items.filter(function(i){ return i.group === g; });
+}
+
+/* 对比：返回 rows + correct，strict 时按位置比 */
+function compareList(inputs, expected, strict){
+  var rows = [], i;
+  if(strict){
+    var n = Math.max(inputs.length, expected.length);
+    for(i=0; i<n; i++){
+      var u = inputs[i] || '', e = expected[i] || '';
+      var st;
+      if(!u && e) st = 'miss';
+      else if(u && !e) st = 'extra';
+      else {
+        var lv = judge(u, e);
+        st = lv === 'exact' ? 'ok' : (lv === 'near' ? 'near' : 'bad');
+      }
+      rows.push({u:u, e:e, status:st});
+    }
+  } else {
+    var used = {};
+    inputs.forEach(function(u){
+      var best = null;
+      expected.forEach(function(e, idx){
+        if(used[idx]) return;
+        var lv = judge(u, e);
+        if(lv === 'exact'){
+          if(!best || best.lv !== 'exact') best = {idx:idx, e:e, lv:'exact'};
+        } else if(lv === 'near'){
+          if(!best) best = {idx:idx, e:e, lv:'near'};
+        }
+      });
+      if(best){
+        used[best.idx] = 1;
+        rows.push({u:u, e:best.e, status: best.lv === 'exact' ? 'ok' : 'near'});
+      } else {
+        rows.push({u:u, e:'', status:'extra'});
+      }
+    });
+    expected.forEach(function(e, idx){
+      if(!used[idx]) rows.push({u:'', e:e, status:'miss'});
+    });
+  }
+  var correct = rows.filter(function(r){ return r.status === 'ok'; }).length;
+  return {rows:rows, correct:correct, total:expected.length};
+}
+
+/* ================= 默认数据（经典 49 个过程） ================= */
+function mkArea(name, list){
+  return {
+    id: uid(),
+    name: name,
+    items: list.map(function(p){ return {id: uid(), group: p[0], name: p[1]}; })
+  };
+}
+function defaultData(){
+  return {
+    version: 1,
+    areas: [
+      mkArea('项目整合管理', [
+        ['启动','制定项目章程'],
+        ['规划','制订项目管理计划'],
+        ['执行','指导与管理项目工作'],
+        ['执行','管理项目知识'],
+        ['监控','监控项目工作'],
+        ['监控','实施整体变更控制'],
+        ['收尾','结束项目或阶段']
+      ]),
+      mkArea('项目范围管理', [
+        ['规划','规划范围管理'],
+        ['规划','收集需求'],
+        ['规划','定义范围'],
+        ['规划','创建WBS'],
+        ['监控','确认范围'],
+        ['监控','控制范围']
+      ]),
+      mkArea('项目进度管理', [
+        ['规划','规划进度管理'],
+        ['规划','定义活动'],
+        ['规划','排列活动顺序'],
+        ['规划','估算活动持续时间'],
+        ['规划','制订进度计划'],
+        ['监控','控制进度']
+      ]),
+      mkArea('项目成本管理', [
+        ['规划','规划成本管理'],
+        ['规划','估算成本'],
+        ['规划','制订预算'],
+        ['监控','控制成本']
+      ]),
+      mkArea('项目质量管理', [
+        ['规划','规划质量管理'],
+        ['执行','管理质量'],
+        ['监控','控制质量']
+      ]),
+      mkArea('项目资源管理', [
+        ['规划','规划资源管理'],
+        ['规划','估算活动资源'],
+        ['执行','获取资源'],
+        ['执行','建设团队'],
+        ['执行','管理团队'],
+        ['监控','控制资源']
+      ]),
+      mkArea('项目沟通管理', [
+        ['规划','规划沟通管理'],
+        ['执行','管理沟通'],
+        ['监控','监督沟通']
+      ]),
+      mkArea('项目风险管理', [
+        ['规划','规划风险管理'],
+        ['规划','识别风险'],
+        ['规划','实施定性风险分析'],
+        ['规划','实施定量风险分析'],
+        ['规划','规划风险应对'],
+        ['执行','实施风险应对'],
+        ['监控','监督风险']
+      ]),
+      mkArea('项目采购管理', [
+        ['规划','规划采购管理'],
+        ['执行','实施采购'],
+        ['监控','控制采购']
+      ]),
+      mkArea('项目干系人管理', [
+        ['启动','识别干系人'],
+        ['规划','规划干系人参与'],
+        ['执行','管理干系人参与'],
+        ['监控','监督干系人参与']
+      ])
+    ]
+  };
+}
+
+/* ================= 存储 ================= */
+function loadDB(){
+  try{
+    var raw = localStorage.getItem(LS_KEY);
+    if(!raw) return defaultData();
+    var d = JSON.parse(raw);
+    if(!d || !Array.isArray(d.areas)) return defaultData();
+    d.areas = d.areas.map(function(a){
+      a = a || {};
+      return {
+        id: a.id || uid(),
+        name: String(a.name || '未命名领域'),
+        items: (Array.isArray(a.items) ? a.items : []).filter(Boolean).map(function(it){
+          return {
+            id: it.id || uid(),
+            group: GROUPS.indexOf(it.group) >= 0 ? it.group : '规划',
+            name: String(it.name == null ? '' : it.name)
+          };
+        }).filter(function(it){ return it.name; })
+      };
+    });
+    if(!d.areas.length) return defaultData();
+    return d;
+  }catch(e){
+    return defaultData();
+  }
+}
+
+var DB = loadDB();
+var saveTimer = null;
+
+/* 是否还有「未写回数据文件」的修改（未关联文件时不提示） */
+var dirtyFile = false;
+
+function persist(){
+  clearTimeout(saveTimer);
+  try{
+    localStorage.setItem(LS_KEY, JSON.stringify(DB));
+  }catch(e){
+    alert('保存失败：' + e.message);
+  }
+}
+function saveDB(){
+  dirtyFile = true;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(persist, 260);
+  if(document.getElementById('filebar')) fsStatusRender();
+}
+function saveNow(){
+  dirtyFile = true;
+  persist();
+  if(document.getElementById('filebar')) fsStatusRender();
+}
+
+var draftTimer = null;
+var draftTimer2 = null;
+
+/* 每次打开都从空白开始：不恢复上次的草稿 */
+try{
+  localStorage.removeItem(LS_DRAFT);
+  localStorage.removeItem(LS_DRAFT2);
+}catch(e){}
+
+/* ================= 状态 ================= */
+var state = {
+  tab: 'matrix',
+  showCount: true,
+  strict: false,
+  areaIndex: 0,
+  draft: {},
+  draft2: {},
+  areaDraft: {},
+  results: {},
+  results2: {}
+};
+function saveDraft(){
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(function(){
+    try{ localStorage.setItem(LS_DRAFT, JSON.stringify(state.draft)); }catch(e){}
+  }, 400);
+}
+function saveDraft2(){
+  clearTimeout(draftTimer2);
+  draftTimer2 = setTimeout(function(){
+    try{ localStorage.setItem(LS_DRAFT2, JSON.stringify(state.draft2)); }catch(e){}
+  }, 400);
+}
+
+/* ================= 提示 ================= */
+var toastTimer = null;
+function toast(msg){
+  var el = document.getElementById('toast');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'toast';
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ el.classList.remove('on'); }, 1500);
+}
+
+/* ================= 视图：全领域填表 ================= */
+function areaBlock(area){
+  var cells = GROUPS.map(function(g){
+    var items = itemsOf(area, g);
+    var key = area.id + '|' + g;
+    var val = state.draft[key] || '';
+    var head = '<div class="cell-head"><span class="gname">' + g + '</span>' +
+      (state.showCount && items.length ? '<b class="badge">' + items.length + '</b>' : '') + '</div>';
+    var body = items.length
+      ? '<textarea rows="2" spellcheck="false" placeholder="每行一个 · 共 ' + items.length + ' 个">' + esc(val) + '</textarea><div class="res"></div>'
+      : '<div class="none">无</div>';
+    return '<div class="cell' + (items.length ? '' : ' empty') + '" data-key="' + key + '" data-area="' + area.id +
+      '" data-group="' + g + '" data-expected="' + (items.length ? 1 : 0) + '">' + head + body + '</div>';
+  }).join('');
+
+  return '<article class="area">' +
+      '<div class="area-head"><h2>' + esc(area.name) + '</h2>' +
+        '<span class="muted">' + area.items.length + ' 个过程</span><span class="grow"></span>' +
+        '<button class="btn tiny" data-act="checkArea">检查本领域</button>' +
+      '</div>' +
+      '<div class="gridwrap"><div class="grid">' + cells + '</div></div>' +
+    '</article>';
+}
+
+function renderMatrix(v){
+  var total = DB.areas.reduce(function(s,a){ return s + a.items.length; }, 0);
+  v.innerHTML =
+    '<div class="panel">' +
+      '<div class="toolbar">' +
+        '<label class="chk"><input type="checkbox" id="optCount"' + (state.showCount ? ' checked' : '') + '> 显示每格应填数量</label>' +
+        '<span class="grow"></span>' +
+        '<button class="btn primary" id="btnCheckAll">检查全部</button>' +
+        '<button class="btn" id="btnFillAll">填入答案</button>' +
+        '<button class="btn" id="btnClearAll">清空</button>' +
+      '</div>' +
+      '<div class="scorebar" id="scorebar"></div>' +
+      '<div class="legend">' +
+        '<span><i style="background:#12864a"></i>完全正确</span>' +
+        '<span><i style="background:#b45309"></i>接近（措辞有出入）</span>' +
+        '<span><i style="background:#d92d20"></i>错误或多余</span>' +
+        '<span><i style="background:#9ca3af"></i>漏写</span>' +
+      '</div>' +
+      '<div class="areas" id="areas">' + DB.areas.map(areaBlock).join('') + '</div>' +
+    '</div>';
+
+  var areasBox = $('#areas');
+
+  $('#optCount').addEventListener('change', function(e){
+    state.showCount = e.target.checked;
+    renderMatrix(v);
+  });
+  $('#btnCheckAll').addEventListener('click', function(){
+    $$('.cell', areasBox).forEach(function(c){ if(c.dataset.expected === '1') checkCell(c); });
+    updateScore();
+    toast('已检查 ' + total + ' 个过程');
+  });
+  $('#btnFillAll').addEventListener('click', function(){
+    $$('.cell', areasBox).forEach(function(cell){
+      if(cell.dataset.expected !== '1') return;
+      var area = DB.areas.filter(function(a){ return a.id === cell.dataset.area; })[0];
+      if(!area) return;
+      var names = itemsOf(area, cell.dataset.group).map(function(i){ return i.name; });
+      var ta = cell.querySelector('textarea');
+      if(!ta) return;
+      ta.value = names.join('\n');
+      state.draft[cell.dataset.key] = ta.value;
+      cell.classList.remove('pass','fail');
+      var res = cell.querySelector('.res');
+      if(res) res.innerHTML = '';
+      delete state.results[cell.dataset.key];
+    });
+    saveDraft();
+    updateScore();
+    toast('已填入参考答案');
+  });
+  $('#btnClearAll').addEventListener('click', function(){
+    $$('.cell', areasBox).forEach(function(cell){
+      var ta = cell.querySelector('textarea');
+      if(ta) ta.value = '';
+      delete state.draft[cell.dataset.key];
+      delete state.results[cell.dataset.key];
+      cell.classList.remove('pass','fail');
+      var res = cell.querySelector('.res');
+      if(res) res.innerHTML = '';
+    });
+    saveDraft();
+    updateScore();
+  });
+
+  areasBox.addEventListener('input', function(e){
+    var ta = e.target;
+    if(!ta || ta.tagName !== 'TEXTAREA') return;
+    var cell = ta.closest('.cell');
+    if(!cell) return;
+    state.draft[cell.dataset.key] = ta.value;
+    saveDraft();
+    cell.classList.remove('pass','fail');
+    var res = cell.querySelector('.res');
+    if(res) res.innerHTML = '';
+    delete state.results[cell.dataset.key];
+    updateScore();
+  });
+
+  areasBox.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-act="checkArea"]');
+    if(!btn) return;
+    var art = btn.closest('.area');
+    $$('.cell', art).forEach(function(c){ if(c.dataset.expected === '1') checkCell(c); });
+    updateScore();
+  });
+
+  /* 光标离开某个格子时，自动校验刚刚写的那一格 */
+  areasBox.addEventListener('focusout', function(e){
+    var ta = e.target;
+    if(!ta || ta.tagName !== 'TEXTAREA') return;
+    var cell = ta.closest('.cell');
+    if(!cell || cell.dataset.expected !== '1') return;
+    if(!ta.value.trim()) return;
+    if(cell.dataset.checked === ta.value && state.results[cell.dataset.key]) return;
+    cell.dataset.checked = ta.value;
+    checkCell(cell);
+    updateScore();
+  });
+
+  /* 还原上次的判定结果 */
+  Object.keys(state.results).forEach(function(k){
+    var cell = areasBox.querySelector('.cell[data-key="' + k + '"]');
+    if(cell && cell.querySelector('textarea')) checkCell(cell);
+  });
+  updateScore();
+}
+
+function checkCell(cell){
+  var area = DB.areas.filter(function(a){ return a.id === cell.dataset.area; })[0];
+  if(!area) return;
+  var expected = itemsOf(area, cell.dataset.group).map(function(i){ return i.name; });
+  if(!expected.length) return;
+  var ta = cell.querySelector('textarea');
+  var cmp = compareList(splitEntries(ta ? ta.value : ''), expected, false);
+  state.results[cell.dataset.key] = {correct: cmp.correct, total: expected.length};
+  var box = cell.querySelector('.res');
+  if(box) box.innerHTML = renderRows(cmp.rows);
+  var pass = cmp.rows.every(function(r){ return r.status === 'ok'; });
+  cell.classList.toggle('pass', pass);
+  cell.classList.toggle('fail', !pass);
+}
+
+function renderRows(rows){
+  return rows.map(function(r){
+    if(r.status === 'ok')   return '<div class="r ok"><span class="ic">✓</span><span>' + esc(r.u) + '</span></div>';
+    if(r.status === 'near') return '<div class="r near"><span class="ic">≈</span><span>' + esc(r.u) + '</span><em>→ ' + esc(r.e) + '</em></div>';
+    if(r.status === 'extra')return '<div class="r bad"><span class="ic">✗</span><span>' + esc(r.u) + '</span><em>未识别</em></div>';
+    return '<div class="r miss"><span class="ic">＋</span><em>缺：' + esc(r.e) + '</em></div>';
+  }).join('');
+}
+
+function renderLines(rows){
+  return rows.map(function(r, i){
+    var num = '<span class="num">' + (i+1) + '.</span>';
+    if(r.status === 'ok')   return '<div class="r ok">' + num + '<span>' + esc(r.u) + '</span><span class="ic">✓</span></div>';
+    if(r.status === 'near') return '<div class="r near">' + num + '<span>' + esc(r.u) + '</span><em>→ ' + esc(r.e) + '</em></div>';
+    if(r.status === 'extra')return '<div class="r bad">' + num + '<span>' + esc(r.u) + '</span><em>多余/错误</em></div>';
+    if(!r.u)                return '<div class="r miss">' + num + '<em>漏写：' + esc(r.e) + '</em></div>';
+    return '<div class="r bad">' + num + '<span>' + esc(r.u) + '</span><em>应为：' + esc(r.e) + '</em></div>';
+  }).join('');
+}
+
+function updateScore(){
+  var bar = $('#scorebar');
+  if(!bar) return;
+  var total = DB.areas.reduce(function(s,a){ return s + a.items.length; }, 0);
+  var keys = Object.keys(state.results);
+  if(!keys.length){
+    bar.innerHTML = '<span class="big">0<span class="slash">/' + total + '</span></span>' +
+      '<span class="muted">按「领域 × 过程组」逐格默写，每个过程独占一行；写完换到下一格会自动校验，也可以点「检查全部」。</span>';
+    return;
+  }
+  var correct = 0, checkedTotal = 0, passCells = 0;
+  keys.forEach(function(k){
+    var r = state.results[k];
+    correct += r.correct;
+    checkedTotal += r.total;
+    if(r.correct === r.total) passCells++;
+  });
+  bar.innerHTML = '<span class="big">' + correct + '<span class="slash">/' + checkedTotal + '</span></span>' +
+    '<span class="muted">已检查 ' + keys.length + ' 格，其中 ' + passCells + ' 格全对 · 卷面共 ' + total + ' 个过程</span>';
+}
+
+/* ================= 视图：总表默写 ================= */
+function tableCell(area, g){
+  var key = area.id + '|' + g;
+  var items = itemsOf(area, g);
+  var common = 'data-key="' + key + '" data-area="' + area.id + '" data-group="' + g + '"';
+  if(!items.length){
+    return '<td class="emptycell" ' + common + ' data-expected="0"><span class="none">—</span></td>';
+  }
+  var vals = state.draft2[key] || [];
+  var inputs = items.map(function(it, i){
+    var val = vals[i] == null ? '' : vals[i];
+    return '<input class="slot" type="text" autocomplete="off" spellcheck="false" value="' + esc(val) + '" placeholder="' + (i+1) + '">';
+  }).join('');
+  return '<td ' + common + ' data-expected="1">' + inputs + '<div class="res"></div></td>';
+}
+
+function renderTable(v){
+  var total = DB.areas.reduce(function(s,a){ return s + a.items.length; }, 0);
+  var body = DB.areas.map(function(a){
+    return '<tr><th title="' + esc(a.name) + '">' + esc(a.name.replace(/^项目/, '')) + '</th>' +
+      GROUPS.map(function(g){ return tableCell(a, g); }).join('') + '</tr>';
+  }).join('');
+
+  v.innerHTML =
+    '<div class="panel">' +
+      '<div class="toolbar">' +
+        '<span class="muted" style="margin-right:auto">整张表一起默写，每格按数量留好了空位；离开一格会自动判。</span>' +
+        '<button class="btn primary" id="btnCheckAll2">检查全部</button>' +
+        '<button class="btn" id="btnFill2">显示答案</button>' +
+        '<button class="btn" id="btnClear2">清空</button>' +
+      '</div>' +
+      '<div class="scorebar" id="scorebar2"></div>' +
+      '<div class="tblwrap"><table class="mt"><thead><tr><th class="corner">管理领域</th>' +
+        GROUPS.map(function(g){ return '<th>' + g + '</th>'; }).join('') +
+      '</tr></thead><tbody>' + body + '</tbody></table></div>' +
+    '</div>';
+
+  var tbl = $('table.mt', v);
+  if(!tbl) return;
+
+  tbl.addEventListener('input', function(e){
+    var inp = e.target;
+    if(!inp || !inp.classList.contains('slot')) return;
+    var td = inp.closest('td');
+    inp.classList.remove('ok','near','bad');
+    inp.removeAttribute('title');
+    td.classList.remove('pass');
+    var res = td.querySelector('.res');
+    if(res) res.innerHTML = '';
+    delete state.results2[td.dataset.key];
+    delete td.dataset.sig;
+    syncCellDraft(td);
+    updateScore2();
+  });
+
+  /* 换到别的格子时，自动校验刚才那一格 */
+  tbl.addEventListener('focusout', function(e){
+    var inp = e.target;
+    if(!inp || !inp.classList.contains('slot')) return;
+    var td = inp.closest('td');
+    if(!td || td.dataset.expected !== '1') return;
+    /* 同一个格子里换空位不算换格子，别打断默写 */
+    if(e.relatedTarget && td.contains(e.relatedTarget)) return;
+    var sig = cellSig(td);
+    if(!sig.replace(/\u0001/g, '')) return;
+    if(td.dataset.sig === sig && state.results2[td.dataset.key]) return;
+    checkCell2(td);
+    td.dataset.sig = sig;
+    updateScore2();
+  });
+
+  $('#btnCheckAll2', v).addEventListener('click', function(){
+    $$('td[data-expected="1"]', tbl).forEach(function(td){
+      td.dataset.sig = cellSig(td);
+      checkCell2(td);
+    });
+    updateScore2();
+  });
+
+  $('#btnFill2', v).addEventListener('click', function(){
+    $$('td[data-expected="1"]', tbl).forEach(function(td){
+      var area = DB.areas.filter(function(a){ return a.id === td.dataset.area; })[0];
+      if(!area) return;
+      var names = itemsOf(area, td.dataset.group).map(function(i){ return i.name; });
+      $$('input.slot', td).forEach(function(inp, i){ inp.value = names[i] || ''; });
+      syncCellDraft(td);
+      td.dataset.sig = cellSig(td);
+      checkCell2(td);
+    });
+    updateScore2();
+    toast('已填入标准答案');
+  });
+
+  $('#btnClear2', v).addEventListener('click', function(){
+    $$('td[data-expected="1"]', tbl).forEach(function(td){
+      $$('input.slot', td).forEach(function(inp){ inp.value = ''; inp.className = 'slot'; inp.removeAttribute('title'); });
+      var res = td.querySelector('.res');
+      if(res) res.innerHTML = '';
+      td.classList.remove('pass');
+      delete state.results2[td.dataset.key];
+      delete state.draft2[td.dataset.key];
+      delete td.dataset.sig;
+    });
+    saveDraft2();
+    updateScore2();
+    toast('已清空');
+  });
+
+  /* 切回本页时把上次的判定恢复回来 */
+  Object.keys(state.results2).forEach(function(k){
+    var td = tbl.querySelector('td[data-key="' + k + '"]');
+    if(td){
+      checkCell2(td);
+      td.dataset.sig = cellSig(td);
+    }
+  });
+  updateScore2();
+}
+
+function cellSig(td){
+  return $$('input.slot', td).map(function(i){ return i.value.trim(); }).join('\u0001');
+}
+
+function syncCellDraft(td){
+  state.draft2[td.dataset.key] = $$('input.slot', td).map(function(i){ return i.value; });
+  saveDraft2();
+}
+
+function checkCell2(td){
+  var area = DB.areas.filter(function(a){ return a.id === td.dataset.area; })[0];
+  if(!area) return;
+  var expected = itemsOf(area, td.dataset.group).map(function(i){ return i.name; });
+  if(!expected.length) return;
+  var inputs = $$('input.slot', td);
+  var vals = inputs.map(function(i){ return i.value.trim(); });
+  var filled = vals.filter(Boolean);
+  var cmp = compareList(filled, expected, false);
+  var k = 0;
+  inputs.forEach(function(inp, idx){
+    inp.classList.remove('ok','near','bad');
+    inp.removeAttribute('title');
+    if(!vals[idx]) return;
+    var r = cmp.rows[k++];
+    if(!r) return;
+    if(r.status === 'ok'){
+      inp.classList.add('ok');
+    } else if(r.status === 'near'){
+      inp.classList.add('near');
+      inp.title = '应为：' + r.e;
+    } else {
+      inp.classList.add('bad');
+      inp.title = '未识别';
+    }
+  });
+  var missing = cmp.rows.slice(k).filter(function(r){ return r.status === 'miss'; }).map(function(r){ return r.e; });
+  var res = td.querySelector('.res');
+  if(res) res.innerHTML = missing.length ? '<div class="missline">缺：' + missing.map(esc).join('、') + '</div>' : '';
+  td.classList.toggle('pass', cmp.rows.every(function(r){ return r.status === 'ok'; }));
+  state.results2[td.dataset.key] = {correct: cmp.correct, total: expected.length};
+}
+
+function updateScore2(){
+  var bar = document.getElementById('scorebar2');
+  if(!bar) return;
+  var total = DB.areas.reduce(function(s,a){ return s + a.items.length; }, 0);
+  var keys = Object.keys(state.results2);
+  if(!keys.length){
+    bar.innerHTML = '<span class="big">0<span class="slash">/' + total + '</span></span>' +
+      '<span class="muted">整张表共 ' + total + ' 个过程；写完换到下一格会自动校验，也可以点「检查全部」。</span>';
+    return;
+  }
+  var correct = 0, checked = 0, passCells = 0;
+  keys.forEach(function(k){
+    var r = state.results2[k];
+    correct += r.correct;
+    checked += r.total;
+    if(r.correct === r.total) passCells++;
+  });
+  bar.innerHTML = '<span class="big">' + correct + '<span class="slash">/' + checked + '</span></span>' +
+    '<span class="muted">已检查 ' + keys.length + ' 格，全对 ' + passCells + ' 格 · 整表 ' + total + ' 个过程</span>';
+}
+
+/* ================= 视图：逐领域默写 ================= */
+function renderAreaMode(v){
+  if(!DB.areas.length){
+    v.innerHTML = '<div class="panel empty-state">还没有管理领域，请到「题库管理」里添加。</div>';
+    return;
+  }
+  if(state.areaIndex >= DB.areas.length) state.areaIndex = 0;
+  var idx = state.areaIndex;
+  var area = DB.areas[idx];
+  var expected = ordered(area).map(function(i){ return i.name; });
+  var val = state.areaDraft[area.id] || '';
+
+  v.innerHTML =
+    '<div class="panel">' +
+      '<div class="chips" id="areaChips">' +
+        DB.areas.map(function(a, i){
+          var label = a.name.replace(/^项目/, '').replace(/管理$/, '');
+          return '<button class="chip' + (i === idx ? ' on' : '') + '" data-i="' + i + '">' + esc(label) + '</button>';
+        }).join('') +
+      '</div>' +
+      '<div class="area-head"><h2>' + esc(area.name) + '</h2>' +
+        '<span class="muted">' + area.items.length + ' 个过程</span><span class="grow"></span>' +
+        '<label class="chk"><input type="checkbox" id="optStrict"' + (state.strict ? ' checked' : '') + '> 严格按顺序</label>' +
+      '</div>' +
+      '<p class="tip">按顺序默写该领域的全部过程，每个过程独占一行。不会的先空着也可以，检查后会告诉你漏了哪些。</p>' +
+      '<textarea id="areaInput" class="big-input" rows="9" spellcheck="false" placeholder="例如：&#10;制定项目章程&#10;制订项目管理计划">' + esc(val) + '</textarea>' +
+      '<div class="toolbar" style="margin-top:12px">' +
+        '<button class="btn primary" id="btnCheck">检查</button>' +
+        '<button class="btn" id="btnShow">显示答案</button>' +
+        '<button class="btn" id="btnClear">清空</button>' +
+        '<span class="grow"></span>' +
+        '<button class="btn" id="btnPrev">上一领域</button>' +
+        '<button class="btn" id="btnNext">下一领域</button>' +
+      '</div>' +
+      '<div id="areaRes" class="resbox"></div>' +
+    '</div>';
+
+  var input = $('#areaInput');
+  var box = $('#areaRes');
+
+  function doCheck(){
+    var cmp = compareList(splitLines(input.value, state.strict), expected, state.strict);
+    var allOk = cmp.rows.every(function(r){ return r.status === 'ok'; });
+    var head = '<div class="r ' + (allOk ? 'ok' : (cmp.correct ? 'near' : 'bad')) + '">' +
+      '<span class="ic">得分</span><b style="font-size:15px">' + cmp.correct + ' / ' + cmp.total + '</b>' +
+      (allOk ? '<span>全对</span>' : '<span class="muted" style="margin-left:auto">红色为错误项，灰色为漏写项</span>') +
+      '</div>';
+    box.innerHTML = head + renderLines(cmp.rows);
+  }
+
+  input.addEventListener('input', function(){
+    state.areaDraft[area.id] = input.value;
+  });
+
+  $('#btnCheck').addEventListener('click', function(){
+    doCheck();
+    box.scrollIntoView({block:'nearest', behavior:'smooth'});
+  });
+  $('#btnShow').addEventListener('click', function(){
+    input.value = expected.join('\n');
+    state.areaDraft[area.id] = input.value;
+    doCheck();
+  });
+  $('#btnClear').addEventListener('click', function(){
+    input.value = '';
+    state.areaDraft[area.id] = '';
+    box.innerHTML = '';
+    input.focus();
+  });
+  $('#btnPrev').addEventListener('click', function(){
+    state.areaIndex = (idx - 1 + DB.areas.length) % DB.areas.length;
+    renderAreaMode(v);
+  });
+  $('#btnNext').addEventListener('click', function(){
+    state.areaIndex = (idx + 1) % DB.areas.length;
+    renderAreaMode(v);
+  });
+  $('#optStrict').addEventListener('change', function(e){
+    state.strict = e.target.checked;
+    if(box.innerHTML) doCheck();
+  });
+  $('#areaChips').addEventListener('click', function(e){
+    var b = e.target.closest('.chip');
+    if(!b) return;
+    state.areaIndex = parseInt(b.dataset.i, 10) || 0;
+    renderAreaMode(v);
+  });
+}
+
+/* ================= 视图：题库管理 ================= */
+function renderManage(v){
+  v.innerHTML =
+    '<div class="panel">' +
+      '<div class="panel-head"><h2>过程清单</h2>' +
+        '<p class="muted">改动会自动保存，练习页立即生效。显示顺序按「过程组」自动排列。</p></div>' +
+      '<div id="areaList"></div>' +
+      '<button class="btn" id="addArea">+ 新增管理领域</button>' +
+    '</div>' +
+    '<div class="panel">' +
+      '<div class="panel-head"><h2>数据</h2>' +
+        '<p class="muted">日常练习用「保存到文件 / 从文件读取」，把数据文件放在 U 盘里带走；下载备份用于长期留档。</p></div>' +
+      '<div class="row-actions">' +
+        '<button class="btn primary" id="saveFileBtn">保存到文件</button>' +
+        '<button class="btn" id="openFileBtn">从文件读取</button>' +
+        '<span class="grow"></span>' +
+        '<button class="btn" id="expBtn">下载备份</button>' +
+        '<button class="btn" id="impBtn">选择备份文件</button>' +
+        '<button class="btn danger" id="resetBtn">恢复默认 49 个过程</button>' +
+        '<input type="file" id="impFile" accept=".json,application/json" hidden>' +
+      '</div>' +
+      '<div class="filebar" id="filebar"></div>' +
+      '<div class="hint-box" style="margin-top:14px">' +
+        '<b>小贴士</b><br>' +
+        '· 判分是“容错”的：忽略空格和标点，自动忽略「项目」「过程」二字，「制订/制定」「干系人/相关方」视为相同；<br>' +
+        '· 只差一两个字时判为「接近」，会在旁边显示标准写法；<br>' +
+        '· 一个过程内不要换行，多个过程之间用换行（或顿号、逗号）分隔。' +
+      '</div>' +
+    '</div>';
+
+  renderAreaList();
+
+  var list = $('#areaList');
+
+  list.addEventListener('input', function(e){
+    var t = e.target;
+    var wrap = t.closest('.edit-area');
+    if(!wrap) return;
+    var area = DB.areas.filter(function(a){ return a.id === wrap.dataset.id; })[0];
+    if(!area) return;
+    if(t.classList.contains('area-name')){
+      area.name = t.value;
+      saveDB();
+    } else if(t.classList.contains('pname')){
+      var row = t.closest('.edit-row');
+      var it = area.items.filter(function(i){ return i.id === row.dataset.pid; })[0];
+      if(it){ it.name = t.value; saveDB(); }
+    }
+  });
+
+  list.addEventListener('change', function(e){
+    var t = e.target;
+    if(!t.classList.contains('sel')) return;
+    var wrap = t.closest('.edit-area');
+    var area = DB.areas.filter(function(a){ return a.id === wrap.dataset.id; })[0];
+    if(!area) return;
+    var row = t.closest('.edit-row');
+    var it = area.items.filter(function(i){ return i.id === row.dataset.pid; })[0];
+    if(!it) return;
+    it.group = t.value;
+    saveNow();
+    renderAreaList();
+  });
+
+  list.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-act]');
+    if(!btn) return;
+    var act = btn.dataset.act;
+    var wrap = btn.closest('.edit-area');
+
+    if(act === 'addArea'){
+      DB.areas.push({id: uid(), name: '新的管理领域', items: []});
+      saveNow();
+      renderAreaList();
+      var last = $$('#areaList .area-name').pop();
+      if(last){ last.focus(); last.select(); }
+      return;
+    }
+    if(!wrap) return;
+    var area = DB.areas.filter(function(a){ return a.id === wrap.dataset.id; })[0];
+    if(!area) return;
+
+    if(act === 'addP'){
+      area.items.push({id: uid(), group: '规划', name: ''});
+      saveNow();
+      renderAreaList();
+      var names = $$('.edit-area[data-id="' + area.id + '"] .pname');
+      var lastInput = names[names.length - 1];
+      if(lastInput) lastInput.focus();
+    } else if(act === 'delP'){
+      var row = btn.closest('.edit-row');
+      area.items = area.items.filter(function(i){ return i.id !== row.dataset.pid; });
+      saveNow();
+      renderAreaList();
+    } else if(act === 'delArea'){
+      if(confirm('删除「' + area.name + '」及其下 ' + area.items.length + ' 个过程？')){
+        DB.areas = DB.areas.filter(function(a){ return a.id !== area.id; });
+        if(state.areaIndex >= DB.areas.length) state.areaIndex = 0;
+        saveNow();
+        renderAreaList();
+      }
+    }
+  });
+
+  $('#addArea').addEventListener('click', function(){
+    DB.areas.push({id: uid(), name: '新的管理领域', items: []});
+    saveNow();
+    renderAreaList();
+    var last = $$('#areaList .area-name').pop();
+    if(last){
+      last.focus();
+      last.select();
+      last.scrollIntoView({block:'center', behavior:'smooth'});
+    }
+  });
+
+  $('#expBtn').addEventListener('click', exportJSON);
+  $('#impBtn').addEventListener('click', function(){ $('#impFile').click(); });
+  $('#impFile').addEventListener('change', importJSON);
+  $('#saveFileBtn').addEventListener('click', saveToFile);
+  $('#openFileBtn').addEventListener('click', loadFromFile);
+  $('#resetBtn').addEventListener('click', function(){
+    if(!confirm('恢复为内置的 49 个过程？当前所有修改都会丢失。')) return;
+    DB = defaultData();
+    state.draft = {};
+    state.results = {};
+    state.areaDraft = {};
+    state.areaIndex = 0;
+    saveNow();
+    try{ localStorage.removeItem(LS_DRAFT); }catch(e){}
+    renderAreaList();
+    toast('已恢复默认数据');
+  });
+
+  fsStatusRender();
+}
+
+function renderAreaList(){
+  var box = $('#areaList');
+  if(!box) return;
+  box.innerHTML = DB.areas.map(function(a){
+    var rows = ordered(a).map(function(it){
+      return '<div class="edit-row" data-pid="' + it.id + '">' +
+          '<select class="inp sel">' + GROUPS.map(function(g){
+            return '<option' + (g === it.group ? ' selected' : '') + '>' + g + '</option>';
+          }).join('') + '</select>' +
+          '<input class="inp pname" value="' + esc(it.name) + '" placeholder="过程名称">' +
+          '<button class="btn tiny danger" data-act="delP" title="删除这个过程">×</button>' +
+        '</div>';
+    }).join('');
+
+    return '<div class="edit-area" data-id="' + a.id + '">' +
+        '<div class="edit-area-head">' +
+          '<input class="inp area-name" value="' + esc(a.name) + '" placeholder="领域名称">' +
+          '<span class="muted">' + a.items.length + ' 个过程</span>' +
+          '<span class="grow"></span>' +
+          '<button class="btn tiny danger" data-act="delArea">删除领域</button>' +
+        '</div>' +
+        rows +
+        '<button class="btn tiny" data-act="addP" style="margin-top:2px">+ 新增过程</button>' +
+      '</div>';
+  }).join('');
+}
+
+/* ================= 导入 / 导出 ================= */
+function DBText(){
+  return JSON.stringify({app:'pm10', savedAt:new Date().toISOString(), data:DB}, null, 2);
+}
+
+function downloadText(text, filename){
+  var blob = new Blob([text], {type: 'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 3000);
+}
+
+function exportJSON(){
+  var d = new Date();
+  var stamp = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+  downloadText(DBText(), '十大管理过程-备份-' + stamp + '.json');
+  toast('已下载备份文件');
+}
+
+/* 把 JSON 文本装进 DB，成功返回 true */
+function applyImported(text){
+  try{
+    var obj = JSON.parse(text);
+    var d = (obj && obj.data) ? obj.data : obj;
+    if(!d || !Array.isArray(d.areas)) throw new Error('文件里没有找到过程数据');
+
+    d.areas = d.areas.map(function(a){
+      a = a || {};
+      return {
+        id: a.id || uid(),
+        name: String(a.name || '未命名领域'),
+        items: (Array.isArray(a.items) ? a.items : []).filter(Boolean).map(function(it){
+          return {
+            id: it.id || uid(),
+            group: GROUPS.indexOf(it.group) >= 0 ? it.group : '规划',
+            name: String(it.name == null ? '' : it.name)
+          };
+        }).filter(function(it){ return it.name; })
+      };
+    });
+    if(!d.areas.length) throw new Error('过程清单为空');
+    if(!confirm('读取会覆盖当前全部数据，确定继续？')) return false;
+
+    DB = d;
+    state.draft = {};
+    state.results = {};
+    state.areaDraft = {};
+    state.areaIndex = 0;
+    saveNow();
+    try{ localStorage.removeItem(LS_DRAFT); }catch(err){}
+    renderAreaList();
+    dirtyFile = false;
+    return true;
+  }catch(err){
+    alert('读取失败：' + err.message);
+    return false;
+  }
+}
+
+function importJSON(e){
+  var file = e.target.files && e.target.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(){
+    if(applyImported(reader.result)) fsStatusRender();
+  };
+  reader.readAsText(file, 'utf-8');
+  e.target.value = '';
+}
+
+/* ---------- 关联本地数据文件（可放在 U 盘） ---------- */
+var FILE_DB = 'pm10.fs.v1';
+var FILE_NAME_KEY = 'pm10.fs.name';
+var linkedName = (function(){
+  try{ return localStorage.getItem(FILE_NAME_KEY) || null; }catch(e){ return null; }
+})();
+var cachedHandle = null;
+
+function fsSupported(){
+  return typeof window.showSaveFilePicker === 'function';
+}
+
+function idbOpen(){
+  return new Promise(function(resolve, reject){
+    var req = indexedDB.open(FILE_DB, 1);
+    req.onupgradeneeded = function(){ req.result.createObjectStore('kv'); };
+    req.onsuccess = function(){ resolve(req.result); };
+    req.onerror = function(){ reject(req.error); };
+  });
+}
+
+function idbOp(mode, fn){
+  return idbOpen().then(function(db){
+    return new Promise(function(resolve, reject){
+      var tx = db.transaction('kv', mode);
+      var req = fn(tx.objectStore('kv'));
+      tx.oncomplete = function(){ resolve(req ? req.result : undefined); };
+      tx.onerror = function(){ reject(tx.error); };
+      tx.onabort = function(){ reject(tx.error); };
+    });
+  });
+}
+
+function getHandle(){
+  if(!window.indexedDB) return Promise.resolve(null);
+  return idbOp('readonly', function(s){ return s.get('file'); }).catch(function(){ return null; });
+}
+function putHandle(h){
+  return idbOp('readwrite', function(s){ return s.put(h, 'file'); }).catch(function(){});
+}
+function clearHandle(){
+  return idbOp('readwrite', function(s){ return s.delete('file'); }).catch(function(){});
+}
+
+function fsStatusRender(){
+  var bar = document.getElementById('filebar');
+  if(!bar) return;
+  if(!fsSupported()){
+    bar.innerHTML = '<span class="muted">当前浏览器不支持直接写文件（Firefox / Safari 的限制）。请用「下载备份」和「选择备份文件」两个按钮，或换用 Edge / Chrome 打开本页。</span>';
+    return;
+  }
+  if(linkedName){
+    bar.innerHTML = '已关联数据文件：<b>' + esc(linkedName) + '</b>' +
+      (dirtyFile ? ' <span class="warn-t">· 有修改还没写回文件，记得点「保存到文件」</span>' : ' <span class="muted">· 已保存</span>') +
+      ' <button class="btn tiny" id="unlinkBtn">解除关联</button>';
+    var ub = document.getElementById('unlinkBtn');
+    if(ub) ub.addEventListener('click', function(){
+      clearHandle();
+      cachedHandle = null;
+      linkedName = null;
+      try{ localStorage.removeItem(FILE_NAME_KEY); }catch(e){}
+      fsStatusRender();
+      toast('已解除关联');
+    });
+  } else {
+    bar.innerHTML = '<span class="muted">还没有关联数据文件。点「保存到文件」，选一个位置（比如 U 盘里的文件夹），以后每次练完点一下就会写回同一个文件。</span>';
+  }
+}
+
+function writeHandle(handle, text){
+  return Promise.resolve()
+    .then(function(){ return handle.queryPermission({mode:'readwrite'}); })
+    .then(function(state){
+      if(state === 'granted') return 'granted';
+      return handle.requestPermission({mode:'readwrite'});
+    })
+    .then(function(state){
+      if(state !== 'granted') throw new Error('没有写入权限');
+      return handle.createWritable();
+    })
+    .then(function(w){
+      return Promise.resolve(w.write(text)).then(function(){ return w.close(); });
+    });
+}
+
+function saveToFile(){
+  var text = DBText();
+  if(!fsSupported()){
+    downloadText(text, '十大管理过程-数据.json');
+    toast('浏览器不支持直接写文件，已下载数据文件');
+    return;
+  }
+  if(!cachedHandle){
+    pickAndSave(text);
+    return;
+  }
+  writeHandle(cachedHandle, text).then(function(){
+    markSaved(cachedHandle);
+  }).catch(function(err){
+    if(err && err.name === 'AbortError') return;
+    /* 文件被移动/删除，或权限被拒：重新选一个文件 */
+    clearHandle();
+    cachedHandle = null;
+    pickAndSave(text);
+  });
+}
+
+function pickAndSave(text){
+  window.showSaveFilePicker({
+    suggestedName: '十大管理过程-数据.json',
+    types: [{description:'数据文件', accept:{'application/json':['.json']}}]
+  }).then(function(h){
+    return writeHandle(h, text).then(function(){
+      cachedHandle = h;
+      putHandle(h);
+      markSaved(h);
+    });
+  }).catch(function(err){
+    if(err && err.name === 'AbortError') return;
+    console.warn(err);
+    downloadText(text, '十大管理过程-数据.json');
+    toast('没法直接写文件，已改为下载');
+  });
+}
+
+function markSaved(handle){
+  linkedName = handle.name;
+  dirtyFile = false;
+  try{ localStorage.setItem(FILE_NAME_KEY, handle.name); }catch(e){}
+  fsStatusRender();
+  toast('已保存到 ' + handle.name);
+}
+
+function loadFromFile(){
+  if(!fsSupported()){
+    var f = document.getElementById('impFile');
+    if(f) f.click();
+    return;
+  }
+  window.showOpenFilePicker({
+    multiple: false,
+    types: [{description:'数据文件', accept:{'application/json':['.json']}}]
+  }).then(function(picked){
+    var handle = picked[0];
+    return handle.getFile().then(function(file){
+      return file.text().then(function(text){
+        if(!applyImported(text)) return;
+        cachedHandle = handle;
+        linkedName = handle.name;
+        dirtyFile = false;
+        try{ localStorage.setItem(FILE_NAME_KEY, handle.name); }catch(e){}
+        putHandle(handle);
+        fsStatusRender();
+        toast('已读取 ' + handle.name);
+      });
+    });
+  }).catch(function(err){
+    if(err && err.name === 'AbortError') return;
+    alert('读取失败：' + ((err && err.message) || err));
+  });
+}
+
+/* ================= 渲染入口 ================= */
+function render(){
+  $$('#tabs button').forEach(function(b){
+    b.classList.toggle('active', b.dataset.tab === state.tab);
+  });
+  var v = $('#view');
+  if(state.tab === 'table') renderTable(v);
+  else if(state.tab === 'matrix') renderMatrix(v);
+  else if(state.tab === 'area') renderAreaMode(v);
+  else renderManage(v);
+
+  var total = DB.areas.reduce(function(s,a){ return s + a.items.length; }, 0);
+  var sub = $('#subtitle');
+  if(sub) sub.textContent = '信息系统项目管理师 · ' + DB.areas.length + ' 个领域 / ' + total + ' 个过程 · 写下答案即时判对错';
+}
+
+document.getElementById('tabs').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-tab]');
+  if(!b) return;
+  state.tab = b.dataset.tab;
+  render();
+  window.scrollTo(0, 0);
+});
+
+document.addEventListener('keydown', function(e){
+  if(state.tab === 'manage') return;
+  if((e.ctrlKey || e.metaKey) && e.key === 'Enter'){
+    var btn = $('#view .btn.primary');
+    if(btn){ e.preventDefault(); btn.click(); }
+  }
+});
+
+window.addEventListener('beforeunload', function(e){
+  persist();
+  if(linkedName && dirtyFile){
+    e.preventDefault();
+    e.returnValue = '';
+    return '';
+  }
+});
+
+/* 启动时恢复上次关联的文件句柄（真正写入时再申请权限） */
+getHandle().then(function(h){
+  if(h) cachedHandle = h;
+  if(h && h.name && !linkedName){
+    linkedName = h.name;
+    fsStatusRender();
+  }
+});
+
+render();
+})();
+</script>
+</body>
+</html>
